@@ -1,0 +1,48 @@
+﻿## Build artifacts
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+TestResults/
+*.log
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+## Coverage reports
+coverage/
+*.coverage
+*.coveragexml
+
+## Resharper
+*.DotSettings.user
+
+## Others
+*.dbmdl
+*.pdb
+*.cache
+*.vspscc
+*.vssscc
+*.orig
+
+## Visual Studio folder
+.vs/
+
+## Temporary files
+*.tmp
+*.bak
+*.swp
+*.sln.ide
+
+## OS-specific
+.DS_Store
+Thumbs.db
