@@ -11,7 +11,7 @@
 
 ## Folder Structure
 
-```Mermaid
+```mermaid
 graph TD
   A[Root Folder] --> B[Documents]
   B --> B1[Function_Design_.md]
