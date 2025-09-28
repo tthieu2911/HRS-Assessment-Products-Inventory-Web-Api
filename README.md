@@ -218,6 +218,25 @@ echo 'export PATH=$PATH:$HOME/.dotnet/tools' >> ~/.zshrc
 source ~/.zshrc
 ```
 
+- Build the project
+
+```bash
+dotnet build TTH_Inventory_Mngt.WebApi.Public
+```
+
+- Run the project
+
+```bash
+dotnet run TTH_Inventory_Mngt.WebApi.Public
+```
+
+or 
+
+```bash
+dotnet watch run --project TTH_Inventory_Mngt.WebApi.Public
+```
+
+
 ### Swagger UI
 
-- Open https://localhost:7097/ or http://localhost:5064/ in Browser
+- Open https://localhost:7097/index.html or http://localhost:5064/index.html in Browser
