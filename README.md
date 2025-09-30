@@ -157,9 +157,86 @@ Run file dirrectly
 
 ### Solution Run
 
+#### IF WINDOWS 
+
 - Run Solution using Visual Studio 2x version
 - Run Solution in DEBUG mode
 
+#### IF MAC OS (my case is M1 silicon Chip)
+
+- Run VS Code
+- Install dotnet package using `brew`
+
+```bash
+brew install dotnet@8
+```
+or download and install manually via url `https://dotnet.microsoft.com/en-us/download/dotnet/8.0/`
+
+- Verify the installation
+
+```bash
+dotnet --list-sdks
+dotnet --list-runtimes
+```
+
+- Make sure the PATH is included
+
+```bash
+echo 'export DOTNET_ROOT="/opt/homebrew/opt/dotnet@8/libexec"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+- My machine installed with .NET 8.0.120 so please check the version and update the global.json accordingly
+
+```bash
+Installed SDKs:
+8.0.120 [/opt/homebrew/Cellar/dotnet@8/8.0.120/libexec/sdk]
+```
+
+**global.json**
+
+```json
+{
+  "sdk": {
+    "version": "8.0.120",
+    "rollForward": "latestFeature"
+  }
+}
+
+```
+
+- Install dotnet-reportgenerator
+
+```bash
+dotnet tool install -g dotnet-reportgenerator-globaltool
+```
+
+- Make sure the PATH is included
+
+```bash
+echo 'export PATH=$PATH:$HOME/.dotnet/tools' >> ~/.zshrc
+source ~/.zshrc
+```
+
+- Build the project
+
+```bash
+dotnet build TTH_Inventory_Mngt.WebApi.Public
+```
+
+- Run the project
+
+```bash
+dotnet run TTH_Inventory_Mngt.WebApi.Public
+```
+
+or 
+
+```bash
+dotnet watch run --project TTH_Inventory_Mngt.WebApi.Public
+```
+
+
 ### Swagger UI
 
-- Open https://localhost:7097/ or http://localhost:5064/ in Browser
+- Open https://localhost:7097/index.html or http://localhost:5064/index.html in Browser

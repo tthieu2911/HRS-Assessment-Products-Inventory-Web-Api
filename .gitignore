@@ -4,6 +4,7 @@ obj/
 [Bb]uild/
 [Ll]og/
 TestResults/
+test-results/
 *.log
 
 ## User-specific files
