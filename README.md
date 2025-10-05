@@ -19,12 +19,15 @@
 graph TD
   A[Root Folder] --> B[Documents]
   B --> B1[Function_Design_.md]
-  B --> B2[Enhancement_.md]pla
+  B --> B2[Enhancement_.md]
+
   A --> C1[generateUnitTest.bat]
+
   A --> D[IT-Scripts]
   D --> D1[TTH-Inventory-Management.postman_collection.json]
   D --> D2[Local.TTH_Inventory_Mngt.Env.postman_environment.json]
   D --> D3[IT-script.bat]
+
   A --> E[Scripts]
   E --> E1a[Dynamo/Mock-Local]
   E1a --> E1aA[Docker]
