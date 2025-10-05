@@ -1,0 +1,16 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    // SQL Server: with Schema
+    
+    // using localhost
+    // "DefaultConnection": "Server=localhost,1433;Database=InventoryDB.TestSchema;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"
+
+    // using docker.host
+    "DefaultConnection": "Server=host.docker.internal,1433;Database=InventoryDB.TestSchema;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"
+  }
+}
