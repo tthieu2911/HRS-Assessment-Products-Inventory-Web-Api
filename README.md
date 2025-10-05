@@ -1,29 +1,30 @@
-# ENVIRONMENT SETUP
+# 🧩 Environment Setup Guide
 
-## Infrastructure
+## ⚙️ 1. Infrastructure Overview
 
-- Operating System: Windows 10 or Windows 11
-- .NET Framework: 4.x (for legacy components if applicable)
-- .NET SDK: .NET 8.0 (LTS) – required for building and running the solution
-- Programming Language: C#
-- AWS CLI: Optional – used for interacting with AWS services from the command line
-- Docker Desktop: Required – used to run local DynamoDB container
+| Component | Version / Requirement | Notes |
+|------------|------------------------|-------|
+| **OS** | Windows 10 / 11 | Supported for main development |
+| **.NET Framework** | 4.x | For legacy components (if applicable) |
+| **.NET SDK** | .NET 8.0 (LTS) | Required for build & run |
+| **Language** | C# | Main development language |
+| **AWS CLI** | Optional | Used for AWS service integration |
+| **Docker Desktop** | ✅ Required | Used to run local DynamoDB / SQLServer containers |
 
-## Folder Structure
+---
+
+## 📁 2. Directory Tree
 
 ```mermaid
 graph TD
   A[Root Folder] --> B[Documents]
   B --> B1[Function_Design_.md]
-  B --> B2[Enhancement_.md]
-
+  B --> B2[Enhancement_.md]pla
   A --> C1[generateUnitTest.bat]
-
   A --> D[IT-Scripts]
   D --> D1[TTH-Inventory-Management.postman_collection.json]
   D --> D2[Local.TTH_Inventory_Mngt.Env.postman_environment.json]
   D --> D3[IT-script.bat]
-
   A --> E[Scripts]
   E --> E1a[Dynamo/Mock-Local]
   E1a --> E1aA[Docker]
@@ -37,164 +38,135 @@ graph TD
   E2a --> E2a2[SQLServer-Local-Monitoring.bat]
 ```
 
-### Documents
+---
 
-#### Design
+## 📚 3. Documents
 
-|Path|File Name|Target|
-|--|--|--|
-|`./Documents`|`Function_Design_.md`|Function Design of current WebApi > MngtController|
-||`Enhancement_.md`|Next Enhancement for proposal|
+### 🧠 Design
 
-### Unit Test
+| Path | File Name | Description |
+|------|------------|-------------|
+| `./Documents` | `Function_Design_.md` | Function Design of WebAPI (MngtController) |
+|  | `Enhancement_.md` | Next enhancement proposal |
 
-### Coverage report
+### 🧪 Unit Test
 
-|Path|File Name|Target|
-|--|--|--|
-|`./`|`generateUnitTest.bat`|Script to run UT Coverage report for whole the solution|
+| Path | File Name | Description |
+|------|------------|-------------|
+| `./` | `generateUnitTest.bat` | Script to generate UT Coverage report |
 
-### Integration Test
+### 🔗 Integration Test (Postman)
 
-#### Postman
+| Path | File Name | Description |
+|------|------------|-------------|
+| `./IT-Scripts` | `TTH-Inventory-Management.postman_collection.json` | Postman Collection |
+|  | `Local.TTH_Inventory_Mngt.Env.postman_environment.json` | Local Postman Environment |
+|  | `IT-script.bat` | Local run script |
 
-|Path|File Name|Target|
-|--|--|--|
-|`./IT-Scripts`|`TTH-Inventory-Management.postman_collection.json`|Postman Collection for IT|
-||`Local.TTH_Inventory_Mngt.Env.postman_environment.json`|Postman Environment for IT (Local)|
-||`IT-script.bat`|Postman run script for IT (Local)|
+---
 
-### Database
+## 🗄️ 4. Database Scripts
 
-#### Dynamo DB
+### 🧩 DynamoDB (Local)
 
-|Path|File Name|Target|
-|--|--|--|
-|`./Scripts/Dynamo/Mock-Local/Docker`|`DynamoDB-local-setup.bat`|Script to initiate the Image for DynamoDB in Local|
-|`./Scripts/Dynamo/Mock-Local`|`DynamoDB-Products-Table-Create.bat`|Script to create table in DynomoDB in Local|
-||`DynamoDB-Local-Monitoring.bat`|Script to initiate container to monitor the DynomoDB in Local|
+| Path | File | Description |
+|------|------|-------------|
+| `./Scripts/Dynamo/Mock-Local/Docker` | `DynamoDB-local-setup.bat` | Creates local DynamoDB Docker image |
+| `./Scripts/Dynamo/Mock-Local` | `DynamoDB-Products-Table-Create.bat` | Creates Products table |
+|  | `DynamoDB-Local-Monitoring.bat` | Starts local monitoring container |
 
-#### SQL Server
+### 🧩 SQL Server (Local)
 
-|Path|File Name|Target|
-|--|--|--|
-|`./Scripts/SQL/Mock-Local/Docker`|`SQLServer-local-setup.bat`|Script to initiate the Image for SQLServer in Local|
-|`./Scripts/SQL/Mock-Local`|`SQLServer-Products-Table-Create.bat`|Script to create table in SQLServer in Local|
-||`SQLServer-Local-Monitoring.bat`|Script to initiate container to monitor the SQLServer in Local|
+| Path | File | Description |
+|------|------|-------------|
+| `./Scripts/SQL/Mock-Local/Docker` | `SQLServer-local-setup.bat` | Creates local SQL Server Docker image |
+| `./Scripts/SQL/Mock-Local` | `SQLServer-Products-Table-Create.bat` | Creates Products table |
+|  | `SQLServer-Local-Monitoring.bat` | Starts SQLServer monitoring container |
 
-## Local Debug
+---
 
-### DB Setup
+## 🧰 5. Local Debug
 
-#### Suggestion
+### 🧱 DB Setup
 
-- **For local development**:
-  - Use **Docker SQL Server** for full-featured testing
-  - Use **SQLite** for a lightweight, zero-setup option
-- **For unit tests**:
-  - Use **InMemory** provider for fast and isolated testing
+#### 🔹 Suggestion
 
-#### IF DynamoDB
+- **Local Development**
+  - Use **Docker SQL Server** for realistic environment
+  - Use **SQLite** for quick prototyping
+- **Unit Tests**
+  - Use **InMemory provider** for fast testing
 
-##### DB init
+#### 🔹 If Using DynamoDB
 
-Run file dirrectly
-
-```#!/bin/bash
+**Windows (cmd):**
+```bash
 .\Scripts\DynamoDB\Mock-Local\Docker\DynamoDB-local-setup.bat
 ```
 
-- A New Docker Image will be created and A Container to run the Image
-
-Run file dirrectly
-
-```#!/bin/bash
-.\Scripts\DynamoDB\Mock-Local\Docker\DynamoDB-Products-Table-Create.bat
+**Powershell / macOS:**
+```bash
+.\Scripts\DynamoDB\Mock-Local\Mock-Local-DynamoDB-master-script.sh
 ```
 
-- Dynamo DB Table "Products" will be created in the local Dynamo DB (Docker Image)
+#### 🔹 If Using SQL Server
 
-##### DB monitor
-
-Run file dirrectly
-
-```#!/bin/bash
-.\Scripts\DynamoDB\Mock-Local\DynamoDB-Local-Monitoring.bat
-```
-
-- Open http://localhost:8001/ in Browser to monitor the respective Dynamo DB Local Instance
-
-#### IF SQL Server
-
-##### DB init
-
-Run file dirrectly
-
-```#!/bin/bash
+**Windows (cmd):**
+```bash
 .\Scripts\SQL\Mock-Local\Docker\SQLServer-local-setup.bat
 ```
 
-- A New Docker Image will be created
-
-Run file dirrectly
-
-```#!/bin/bash
-.\Scripts\SQL\Mock-Local\Docker\SQLServer-Products-Table-Create.bat
+**Powershell / macOS:**
+```bash
+.\Scripts\SQL\Mock-Local\Mock-Local-SQLServer-master-script.sh
 ```
 
-- A Container will be created to run in the Image
-- Table "Products" will be created in the local SQL Server DB (Docker Image)
+#### 🔹 Expected Behavior
 
-##### DB monitor
+- Docker Image + Container are created successfully  
+- `Products` table is available in local SQL DB  
+- Monitor via: **http://localhost:8080/**
 
-Run file dirrectly
+---
 
-```#!/bin/bash
-.\Scripts\SQL\Mock-Local\SQLServer-Local-Monitoring.bat
-```
+## 🚀 6. Running the Solution
 
-- Open http://localhost:8080/ in Browser to monitor the respective SQL Server DB Local Instance
+### 🪟 Windows
 
-### Solution Run
+- Open **Visual Studio 2022+**
+- Run project in **DEBUG** mode
 
-#### IF WINDOWS 
+### 🍎 macOS (Apple Silicon M1 Example)
 
-- Run Solution using Visual Studio 2x version
-- Run Solution in DEBUG mode
-
-#### IF MAC OS (my case is M1 silicon Chip)
-
-- Run VS Code
-- Install dotnet package using `brew`
+#### Install .NET 8 via Homebrew
 
 ```bash
 brew install dotnet@8
 ```
-or download and install manually via url `https://dotnet.microsoft.com/en-us/download/dotnet/8.0/`
 
-- Verify the installation
+Or download manually:  
+🔗 https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+
+#### Verify Installation
 
 ```bash
 dotnet --list-sdks
 dotnet --list-runtimes
 ```
 
-- Make sure the PATH is included
-
+Ensure PATH setup:
 ```bash
 echo 'export DOTNET_ROOT="/opt/homebrew/opt/dotnet@8/libexec"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-- My machine installed with .NET 8.0.120 so please check the version and update the global.json accordingly
-
+Your machine SDK version might be:
 ```bash
 Installed SDKs:
 8.0.120 [/opt/homebrew/Cellar/dotnet@8/8.0.120/libexec/sdk]
 ```
 
 **global.json**
-
 ```json
 {
   "sdk": {
@@ -202,41 +174,35 @@ Installed SDKs:
     "rollForward": "latestFeature"
   }
 }
-
 ```
 
-- Install dotnet-reportgenerator
+#### Install Report Generator Tool
 
 ```bash
 dotnet tool install -g dotnet-reportgenerator-globaltool
 ```
 
-- Make sure the PATH is included
-
+Add to PATH:
 ```bash
 echo 'export PATH=$PATH:$HOME/.dotnet/tools' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-- Build the project
+#### Build & Run
 
 ```bash
 dotnet build TTH_Inventory_Mngt.WebApi.Public
-```
-
-- Run the project
-
-```bash
 dotnet run TTH_Inventory_Mngt.WebApi.Public
 ```
-
-or 
-
+or
 ```bash
 dotnet watch run --project TTH_Inventory_Mngt.WebApi.Public
 ```
 
+---
 
-### Swagger UI
+## 🌐 7. Swagger UI Access
 
-- Open https://localhost:7097/index.html or http://localhost:5064/index.html in Browser
+Open one of the following:
+- 🔹 https://localhost:7097/index.html  
+- 🔹 http://localhost:5064/index.html
